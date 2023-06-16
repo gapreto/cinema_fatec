@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Página de Pagamento</title>
+  <style>
+    body {
+      background-color: rgb(209, 209, 209);
+      margin: 0;
+      padding: 0;
+    }
+
+    #paymentForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 300px;
+      height: 30px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    #totalPrice {
+      color: green;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #confirmButton {
+      width: 180px;
+      height: 50px;
+      background-color: orange;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="paymentForm">
+    <h2>Preencha os dados do cartão de crédito</h2>
+    <form>
+      <input type="text" placeholder="Nome no Cartão" required>
+      <input type="text" placeholder="Número do Cartão" required>
+      <input type="number" placeholder="Mês de Expiração" required>
+      <input type="number" placeholder="Ano de Expiração" required>
+      <input type="text" placeholder="Código de Segurança" required>
+      <div id="totalPrice"></div>
+      <button id="confirmButton">Confirmar Compra</button>
+    </form>
+  </div>
+
+  <script>
+    var totalPriceElement = document.getElementById("totalPrice");
+    var urlParams = new URLSearchParams(window.location.search);
+    var totalPrice = parseFloat(urlParams.get("totalPrice")) || 0;
+    totalPriceElement.textContent = "Total: R$ " + totalPrice.toFixed(2);
+
+    var confirmButton = document.getElementById("confirmButton");
+    confirmButton.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      // Aqui você pode adicionar o código para enviar o e-mail de confirmação
+
+      alert("Compra confirmada! Um e-mail de confirmação será enviado para você.");
+    });
+  </script>
+</body>
+</html>
